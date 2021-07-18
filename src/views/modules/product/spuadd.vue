@@ -311,7 +311,7 @@
                     <el-col :span="24">
                       <el-form-item label="设置会员价" v-if="scope.row.memberPrice.length>0">
                         <br />
-                        <!--   @change="handlePriceChange(scope,mpidx,$event)" -->
+                          @change="handlePriceChange(scope,mpidx,$event)"
                         <el-form-item v-for="(mp,mpidx) in scope.row.memberPrice" :key="mp.id">
                           {{mp.name}}
                           <el-input-number

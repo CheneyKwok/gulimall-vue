@@ -72,7 +72,7 @@
         <!-- 修改关联关系 -->
         <relation-update v-if="relationVisible" ref="relationUpdate" @refreshData="getDataList"></relation-update>
       </div>
-    </el-col>
+    </el-col>  
   </el-row>
 </template>
 
@@ -80,7 +80,7 @@
 /**
  * 父子组件传递数据
  * 1)、子组件给父组件传递数据，事件机制；
- *    子组件给父组件发送一个事件，携带上数据。F
+ *    子组件给父组件发送一个事件，携带上数据。
  * // this.$emit("事件名",携带的数据...)
  */
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）

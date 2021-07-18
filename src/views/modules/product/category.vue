@@ -182,7 +182,7 @@ export default {
           if (siblings[i].level != draggingNode.level) {
             //当前节点的层级发生变化
             catLevel = siblings[i].level;
-            //修改当前节点的层级以及子节点的层级
+            //修改他子节点的层级
             this.updateChildNodeLevel(siblings[i]);
           }
           this.updateNodes.push({
