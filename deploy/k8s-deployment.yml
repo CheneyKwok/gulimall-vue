@@ -1,0 +1,69 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: gulimall-admin-vue-v1
+  namespace: gulimall
+  labels:
+    app: gulimall-admin-vue
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gulimall-admin-vue
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: gulimall-admin-vue
+        version: v1
+    spec:
+      containers:
+        - name: gulimall-admin-vue
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest
+          ports:
+            - name: tcp-80
+              containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1000Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gulimall-admin-vue
+  namespace: gulimall
+  labels:
+    app: gulimall-admin-vue
+spec:
+  ports:
+    - name: tcp-80
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30001
+  selector:
+    app: gulimall-admin-vue
+    version: v1
+  clusterIP: None
+  type: ClusterIP
+  sessionAffinity: None
