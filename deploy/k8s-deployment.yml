@@ -64,6 +64,5 @@ spec:
   selector:
     app: gulimall-admin-vue
     version: v1
-  clusterIP: None
-  type: ClusterIP
+  type: NodePort
   sessionAffinity: None
