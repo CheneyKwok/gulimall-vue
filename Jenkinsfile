@@ -52,7 +52,7 @@ pipeline {
        steps{
             container ('nodejs') {
               sh "docker tag  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest "
-              sh "docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest "
+              sh "docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest"
             }
        }
     }
@@ -62,7 +62,7 @@ pipeline {
 
       steps {
         input(id: 'deploy-to-dev', message: "是否将 $PROJECT_NAME 部署到集群中?")
-        kubernetesDeploy(configs: "$PROJECT_NAME/deploy/k8s-deployment.yml", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+        kubernetesDeploy(configs: "deploy/k8s-deployment.yml", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
       }
     }
 
