@@ -62,7 +62,7 @@ pipeline {
 
       steps {
         input(id: 'deploy-to-dev', message: "是否将 $PROJECT_NAME 部署到集群中?")
-        kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+        kubernetesDeploy(configs: "$PROJECT_NAME/deploy/k8s-deployment.yml", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
       }
     }
 
